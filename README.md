@@ -18,5 +18,5 @@ mvn clean install liquibase:update -N -DabsolutePath=`pwd`/src/main/resources
 
 ## Swagger
 ```
-http://localhost:8080/swagger-ui.html
+http://localhost:8082/swagger-ui.html
 ```
