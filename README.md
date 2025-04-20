@@ -1,5 +1,7 @@
 # Libralink Agent
 
+[![CircleCI](https://dl.circleci.com/status-badge/img/circleci/3mRSbP89jqQQqkK78hQhCE/LEaH5aYP5LmW33fLeNb1JH/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/circleci/3mRSbP89jqQQqkK78hQhCE/LEaH5aYP5LmW33fLeNb1JH/tree/main)
+
 ## Run Postgres
 
 ```
