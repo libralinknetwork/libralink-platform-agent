@@ -46,6 +46,8 @@ public class AgentService {
 
         /* Calculate & Compare Hash */
         AgentRegisterConfirm challenge = challengeOptional.get();
+        /* TODO: Check status of challenge is ACTIVE (meaning "not used") */
+
         String expectedHash = getHash(challenge.getId(), challenge.getExpiresAt(), challenge.getSalt(), challenge.getAccountId());
         if (!expectedHash.equals(hash)) {
             throw new AgentProtocolException("Invalid Confirmation Details", 999);

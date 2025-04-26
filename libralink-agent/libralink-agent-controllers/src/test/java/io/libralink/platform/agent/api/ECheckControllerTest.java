@@ -1,7 +1,6 @@
 package io.libralink.platform.agent.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.protobuf.Any;
 import io.libralink.client.payment.proto.Libralink;
 import io.libralink.client.payment.proto.builder.echeck.ECheckBuilder;
 import io.libralink.client.payment.proto.builder.echeck.ECheckSplitBuilder;
@@ -100,7 +99,7 @@ public class ECheckControllerTest {
     private Libralink.Envelope unsignedEnvelope = EnvelopeBuilder.newBuilder()
             .addId(UUID.randomUUID())
             .addContent(EnvelopeContentBuilder.newBuilder()
-                    .addEntity(Any.pack(eCheck))
+                    .addECheck(eCheck)
                     .build())
             .build();
 
@@ -137,14 +136,14 @@ public class ECheckControllerTest {
     @Test
     public void test_issue_echeck_signed_by_payer() throws Exception {
 
-        final String feeLockEnvelopeString = "CiQ2N2JjNGRmOS03YWFiLTQ4MTAtOTU5Yy0wZDZkYTcyYTY4MTcSjAYK0AUKQ3R5cGUuZ29vZ2xlYXBpcy5jb20vaW8ubGlicmFsaW5rLmNsaWVudC5wYXltZW50LnByb3RvLlByb2Nlc3NpbmdGZWUSiAUKB3BlcmNlbnQSATEi+QQKJDA5ZDUxMWY1LTk2NzYtNGQ0MC04NzA5LTgwNTNhYmY1NzQzMBLJAwqNAwo8dHlwZS5nb29nbGVhcGlzLmNvbS9pby5saWJyYWxpbmsuY2xpZW50LnBheW1lbnQucHJvdG8uRUNoZWNrEswCCgMxNTASBFVTREMaKjB4ZjM5OTAyYjEzM2ZiZGNmOTI2YzFmNDg2NjVjOThkMWIwMjhkOTA1YSIqMHgxODVjZDQ1OTc1N2E2M2VkNzNmMjEwMGY3MGQzMTE5ODNiMzdiY2E2KioweDhmMzNkY2VlZWRmY2Y3MTg1YWE0ODBlZTE2ZGI5YjliYjc0NTc1NmUyKjB4MTg1Y2Q0NTk3NTdhNjNlZDczZjIxMDBmNzBkMzExOTgzYjM3YmNhNjpdCgMxNTASKjB4OGYzM2RjZWVlZGZjZjcxODVhYTQ4MGVlMTZkYjliOWJiNzQ1NzU2ZRoqMHgxODVjZDQ1OTc1N2E2M2VkNzNmMjEwMGY3MGQzMTE5ODNiMzdiY2E2QK+0i8AGSK+AxtYHWiQ4OGE3MDMwMC04YzU0LTQzODctYTRkMC02Mzk3NGFiMTRlYjkSKjB4ZjM5OTAyYjEzM2ZiZGNmOTI2YzFmNDg2NjVjOThkMWIwMjhkOTA1YSIJU0VDUDI1NksxKAEahAEweDgwMGFhZjM5OWExYjA4YWJjMTM0YWY5MTFjNjIwMDhkOWMwNDIyYjcxZjQ4MjNhOTcxYTZiYTMyOTgxYWQ4ZTU2MzdhZWU0OTkxYjM3ZTYzNWRmODRkNzVmM2M1ODg3OWZiNGQ1NDdhMjNkNjAxOGE3OTM4NDA5NTUwMDgzOTBjMWMSKjB4MTg1Y2Q0NTk3NTdhNjNlZDczZjIxMDBmNzBkMzExOTgzYjM3YmNhNiIJU0VDUDI1NksxKAIahAEweDI4MDJiNDc1YTJkYzllMmEzNjRhNTMxMzFhOWY2Y2QxMDcxYmYxYjIzNmE5OWUwYWVlNzRkMzNkODFhODI1NDc2NDRmYTU3NTY4YzhiMzA0Yjc4NTA3ZmUyODAyMjIzMzNmNTBhMjRjZjQ0MDY0MmZiY2U4MjU1ZGIyNzhhMWEwMWM=";
+        final String feeLockEnvelopeString = "CiRlN2M3MDIwZS02ODZkLTRlMDgtOTQ2NS02OTBjZTM1YzcyOTMSgwUKKjB4MTg1Y2Q0NTk3NTdhNjNlZDczZjIxMDBmNzBkMzExOTgzYjM3YmNhNhoJU0VDUDI1NksxIAIyxwQKB3BlcmNlbnQSATEiuAQKJGQ3OGRhM2UwLTcyY2YtNDkzZS05NjA4LWI2OTI4Mzc2MGU5NRKIAwoqMHhmMzk5MDJiMTMzZmJkY2Y5MjZjMWY0ODY2NWM5OGQxYjAyOGQ5MDVhGglTRUNQMjU2SzEgAUrMAgoDMTUwEgRVU0RDGioweGYzOTkwMmIxMzNmYmRjZjkyNmMxZjQ4NjY1Yzk4ZDFiMDI4ZDkwNWEiKjB4MTg1Y2Q0NTk3NTdhNjNlZDczZjIxMDBmNzBkMzExOTgzYjM3YmNhNioqMHg4ZjMzZGNlZWVkZmNmNzE4NWFhNDgwZWUxNmRiOWI5YmI3NDU3NTZlMioweDE4NWNkNDU5NzU3YTYzZWQ3M2YyMTAwZjcwZDMxMTk4M2IzN2JjYTY6XQoDMTUwEioweDhmMzNkY2VlZWRmY2Y3MTg1YWE0ODBlZTE2ZGI5YjliYjc0NTc1NmUaKjB4MTg1Y2Q0NTk3NTdhNjNlZDczZjIxMDBmNzBkMzExOTgzYjM3YmNhNkCK963ABkiKw+jWB1okNzE0NjI1OTktMTVmNC00ODk0LWJmYWMtMTZmZTNmNGNkYjFiGoQBMHhkNTlhODk3OTliMDc2ZmVkZWE1ZTRkNzZhOTQ3MzIwYWJmMDY0ZTYyNjNlNjU1NWNkMGQ4MzVjYjViN2I4NjU4M2EzNjVmM2UzNDc1YThjMzVhY2IyZGNlYzg5MTk1YjIwYmE3YTg3NDU4NjcwZmY0OTMwMTMwMDJmNGFiNjliNDFiGoQBMHhkZDg4ZTg5MGY3MjRlNzY5MGI1Zjk2NzhjYWNhOTg5NGQ4MjI3OTA4ODc3NmEzMDBjMDNkOGNlZTU4NWNjMzNlNjUzM2E4ODUwZTFhY2ZlMzQ1NjJmMGY3NjVkOGQwNTM5ODYyZjdmMjU4OTcxN2E2MzRjZTM2NTRkN2VlMDJlYTFj";
         byte[] decodedBytes = Base64.getDecoder().decode(feeLockEnvelopeString);
         Libralink.Envelope feeLockEnvelope = Libralink.Envelope.parseFrom(decodedBytes);
 
         Libralink.Envelope unsignedPayerEnvelope = EnvelopeBuilder.newBuilder()
                 .addId(UUID.randomUUID())
                 .addContent(EnvelopeContentBuilder.newBuilder()
-                        .addEntity(Any.pack(feeLockEnvelope))
+                        .addEnvelope(feeLockEnvelope)
                         .build())
                 .build();
 

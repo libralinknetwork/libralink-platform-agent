@@ -12,15 +12,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfig {
 
     @Bean
-    public Docket protocolApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("Agent Protocol")
-                .select()
-                .paths(PathSelectors.ant("/protocol/**"))
-                .build();
-    }
-
-    @Bean
     public Docket allApi() {
         return new Docket(DocumentationType.SWAGGER_2)
             .groupName("All")

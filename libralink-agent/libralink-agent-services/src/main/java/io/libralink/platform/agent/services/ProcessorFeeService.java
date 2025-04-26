@@ -1,6 +1,5 @@
 package io.libralink.platform.agent.services;
 
-import com.google.protobuf.Any;
 import io.libralink.client.payment.proto.Libralink;
 import io.libralink.client.payment.proto.builder.envelope.EnvelopeBuilder;
 import io.libralink.client.payment.proto.builder.envelope.EnvelopeContentBuilder;
@@ -60,7 +59,7 @@ public class ProcessorFeeService {
                 .build();
 
         Libralink.EnvelopeContent envelopeContent = EnvelopeContentBuilder.newBuilder()
-                .addEntity(Any.pack(processingDetails))
+                .addProcessingFee(processingDetails)
                 .build();
 
         Libralink.Envelope responseEnvelope = EnvelopeBuilder.newBuilder()

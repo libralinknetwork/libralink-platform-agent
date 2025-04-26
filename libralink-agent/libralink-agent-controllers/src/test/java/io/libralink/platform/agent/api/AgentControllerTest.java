@@ -1,6 +1,5 @@
 package io.libralink.platform.agent.api;
 
-import com.google.protobuf.Any;
 import io.libralink.client.payment.proto.Libralink;
 import io.libralink.client.payment.proto.builder.api.GetBalanceRequestBuilder;
 import io.libralink.client.payment.proto.builder.api.RegisterKeyRequestBuilder;
@@ -21,12 +20,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.web3j.crypto.Credentials;
 
-import java.math.BigDecimal;
 import java.util.Base64;
 import java.util.UUID;
 
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -74,7 +70,7 @@ public class AgentControllerTest {
                 .addId(UUID.randomUUID())
                 .addContent(EnvelopeContentBuilder.newBuilder()
                         .addSigReason(Libralink.SignatureReason.NONE)
-                        .addEntity(Any.pack(request))
+                        .addRegisterKeyRequest(request)
                         .build())
                 .addId(UUID.randomUUID())
                 .build();
@@ -105,7 +101,7 @@ public class AgentControllerTest {
                 .build();
 
         Libralink.EnvelopeContent envelopeContent = EnvelopeContentBuilder.newBuilder()
-                .addEntity(Any.pack(request))
+                .addGetBalanceRequest(request)
                 .build();
 
         Libralink.Envelope envelope = EnvelopeBuilder.newBuilder()

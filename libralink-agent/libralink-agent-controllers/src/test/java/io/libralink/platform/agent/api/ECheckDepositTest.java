@@ -1,7 +1,6 @@
 package io.libralink.platform.agent.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.protobuf.Any;
 import io.libralink.client.payment.proto.Libralink;
 import io.libralink.client.payment.proto.builder.api.DepositRequestBuilder;
 import io.libralink.client.payment.proto.builder.echeck.ECheckBuilder;
@@ -100,7 +99,7 @@ public class ECheckDepositTest {
     private Libralink.Envelope unsignedECheckEnvelope = EnvelopeBuilder.newBuilder()
             .addId(UUID.randomUUID())
             .addContent(EnvelopeContentBuilder.newBuilder()
-                    .addEntity(Any.pack(eCheck))
+                    .addECheck(eCheck)
                     .build())
             .build();
 
@@ -116,7 +115,7 @@ public class ECheckDepositTest {
     private Libralink.Envelope unsignedProcessorFeeEnvelope = EnvelopeBuilder.newBuilder()
             .addId(UUID.randomUUID())
             .addContent(EnvelopeContentBuilder.newBuilder()
-                    .addEntity(Any.pack(processingDetails))
+                    .addProcessingFee(processingDetails)
                     .build())
             .build();
 
@@ -125,7 +124,7 @@ public class ECheckDepositTest {
     private Libralink.Envelope unsignedPayerConfirmEnvelope = EnvelopeBuilder.newBuilder()
             .addId(UUID.randomUUID())
             .addContent(EnvelopeContentBuilder.newBuilder()
-                    .addEntity(Any.pack(processorSignedFeeEnvelope))
+                    .addEnvelope(processorSignedFeeEnvelope)
                     .build())
             .build();
 
@@ -134,7 +133,7 @@ public class ECheckDepositTest {
     private Libralink.Envelope unsignedProcessorConfirmEnvelope = EnvelopeBuilder.newBuilder()
             .addId(UUID.randomUUID())
             .addContent(EnvelopeContentBuilder.newBuilder()
-                    .addEntity(Any.pack(signedPayerConfirmEnv))
+                    .addEnvelope(signedPayerConfirmEnv)
                     .build())
             .build();
 
@@ -155,7 +154,7 @@ public class ECheckDepositTest {
     private Libralink.Envelope unsignedPayeeDepositApprovalEnvelope = EnvelopeBuilder.newBuilder()
             .addId(UUID.randomUUID())
             .addContent(EnvelopeContentBuilder.newBuilder()
-                    .addEntity(Any.pack(paymentRequest))
+                    .addPaymentRequest(paymentRequest)
                     .build())
             .build();
 
@@ -164,7 +163,7 @@ public class ECheckDepositTest {
     private Libralink.Envelope unsignedPayerDepositApprovalEnvelope = EnvelopeBuilder.newBuilder()
             .addId(UUID.randomUUID())
             .addContent(EnvelopeContentBuilder.newBuilder()
-                    .addEntity(Any.pack(payeeSignedDepositApprovalEnvelope))
+                    .addEnvelope(payeeSignedDepositApprovalEnvelope)
                     .build())
             .build();
 
@@ -181,7 +180,7 @@ public class ECheckDepositTest {
         Libralink.Envelope unsignedEnvelope = EnvelopeBuilder.newBuilder()
                 .addId(UUID.randomUUID())
                 .addContent(EnvelopeContentBuilder.newBuilder()
-                        .addEntity(Any.pack(depositRequest))
+                        .addDepositRequest(depositRequest)
                         .build())
                 .build();
 

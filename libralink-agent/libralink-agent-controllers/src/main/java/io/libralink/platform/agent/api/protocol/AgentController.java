@@ -1,6 +1,5 @@
 package io.libralink.platform.agent.api.protocol;
 
-import com.google.protobuf.Any;
 import io.libralink.client.payment.proto.Libralink;
 import io.libralink.client.payment.proto.builder.api.GetBalanceResponseBuilder;
 import io.libralink.client.payment.proto.builder.api.RegisterKeyResponseBuilder;
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.math.BigDecimal;
 import java.util.Base64;
@@ -35,10 +35,17 @@ public class AgentController {
     @Autowired
     private AgentService agentService;
 
+    @ApiIgnore
     @PostMapping(value = "/protocol/agent/register", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE })
     public Libralink.Envelope register(@RequestBody String body, @RequestHeader("Accept") String accept) throws Exception {
 
-        Libralink.Envelope envelope = Libralink.Envelope.parseFrom(Base64.getDecoder().decode(body.getBytes()));
+        Libralink.Envelope envelope;
+        try {
+            envelope = Libralink.Envelope.parseFrom(Base64.getDecoder().decode(body.getBytes()));
+        } catch (Exception ex) {
+            throw new AgentProtocolException("Unable to parse request", 999);
+        }
+
         Optional<Libralink.RegisterKeyRequest> requestOptional = EnvelopeUtils.findEntityByType(envelope, Libralink.RegisterKeyRequest.class);
 
         if (requestOptional.isEmpty()) {
@@ -64,16 +71,23 @@ public class AgentController {
                 .addId(UUID.randomUUID())
                 .addContent(
                         EnvelopeContentBuilder.newBuilder()
-                                .addEntity(Any.pack(response))
+                                .addRegisterKeyResponse(response)
                                 .addSigReason(Libralink.SignatureReason.NONE)
                                 .build()
                 ).build();
     }
 
+    @ApiIgnore
     @PostMapping(value = "/protocol/agent/balance", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE })
     public Libralink.Envelope getBalance(@RequestBody String body) throws Exception {
 
-        Libralink.Envelope envelope = Libralink.Envelope.parseFrom(Base64.getDecoder().decode(body.getBytes()));
+        Libralink.Envelope envelope;
+        try {
+            envelope = Libralink.Envelope.parseFrom(Base64.getDecoder().decode(body.getBytes()));
+        } catch (Exception ex) {
+            throw new AgentProtocolException("Unable to parse request", 999);
+        }
+
         boolean isValid = BaseEntityValidator.findFirstFailedRule(envelope, GetBalanceRequestSignedRule.class).isEmpty();
         if (!isValid) {
             throw new AgentProtocolException("Invalid Request", 999);
@@ -100,7 +114,7 @@ public class AgentController {
                 .addId(UUID.randomUUID())
                 .addContent(
                         EnvelopeContentBuilder.newBuilder()
-                                .addEntity(Any.pack(response))
+                                .addGetBalanceResponse(response)
                                 .addSigReason(Libralink.SignatureReason.NONE)
                                 .build()
                 ).build();

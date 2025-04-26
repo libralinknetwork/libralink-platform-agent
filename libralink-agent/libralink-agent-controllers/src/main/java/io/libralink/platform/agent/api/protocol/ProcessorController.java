@@ -1,6 +1,5 @@
 package io.libralink.platform.agent.api.protocol;
 
-import com.google.protobuf.Any;
 import io.libralink.client.payment.proto.Libralink;
 import io.libralink.client.payment.proto.builder.api.GetProcessorResponseBuilder;
 import io.libralink.client.payment.proto.builder.api.ProcessorDetailsBuilder;
@@ -16,6 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.*;
 
@@ -26,10 +26,17 @@ public class ProcessorController {
     @Autowired
     private ProcessorService processorService;
 
+    @ApiIgnore
     @PostMapping(value = "/protocol/processor/trusted", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE })
     public Libralink.Envelope getTrustedProcessors(@RequestBody String body) throws Exception {
 
-        Libralink.Envelope envelope = Libralink.Envelope.parseFrom(Base64.getDecoder().decode(body.getBytes()));
+        Libralink.Envelope envelope;
+        try {
+            envelope = Libralink.Envelope.parseFrom(Base64.getDecoder().decode(body.getBytes()));
+        } catch (Exception ex) {
+            throw new AgentProtocolException("Unable to parse request", 999);
+        }
+
         final Optional<String> addressOption = EnvelopeUtils.extractEntityAttribute(envelope, Libralink.GetProcessorsRequest.class, Libralink.GetProcessorsRequest::getAddress);
         if (addressOption.isEmpty()) {
             throw new AgentProtocolException("Invalid Body", 999);
@@ -58,7 +65,7 @@ public class ProcessorController {
                 .addId(UUID.randomUUID())
                 .addContent(
                         EnvelopeContentBuilder.newBuilder()
-                                .addEntity(Any.pack(response))
+                                .addGetProcessorsResponse(response)
                                 .addSigReason(Libralink.SignatureReason.NONE)
                                 .build()
                 ).build();

@@ -1,6 +1,5 @@
 package io.libralink.platform.agent.api;
 
-import com.google.protobuf.Any;
 import io.libralink.client.payment.proto.Libralink;
 import io.libralink.client.payment.proto.builder.api.GetProcessorRequestBuilder;
 import io.libralink.client.payment.proto.builder.envelope.EnvelopeBuilder;
@@ -72,7 +71,7 @@ public class ProcessorControllerTest {
                 .addId(UUID.randomUUID())
                 .addContent(EnvelopeContentBuilder.newBuilder()
                         .addSigReason(Libralink.SignatureReason.NONE)
-                        .addEntity(Any.pack(request))
+                        .addGetProcessorsRequest(request)
                         .build())
                 .addId(UUID.randomUUID())
                 .build();

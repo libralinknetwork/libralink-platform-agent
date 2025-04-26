@@ -1,6 +1,5 @@
 package io.libralink.platform.agent.services;
 
-import com.google.protobuf.Any;
 import io.libralink.client.payment.proto.Libralink;
 import io.libralink.client.payment.proto.builder.envelope.EnvelopeBuilder;
 import io.libralink.client.payment.proto.builder.envelope.EnvelopeContentBuilder;
@@ -81,7 +80,7 @@ public class ECheckIssueService {
 //        }
 
         Libralink.EnvelopeContent responseEnvelopeContent = EnvelopeContentBuilder.newBuilder()
-                .addEntity(Any.pack(envelope))
+                .addEnvelope(envelope)
                 .build();
 
         Libralink.Envelope responseEnvelope = EnvelopeBuilder.newBuilder()

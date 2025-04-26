@@ -1,6 +1,5 @@
 package io.libralink.platform.agent.handler;
 
-import com.google.protobuf.Any;
 import io.libralink.client.payment.proto.Libralink;
 import io.libralink.client.payment.proto.builder.api.ErrorResponseBuilder;
 import io.libralink.client.payment.proto.builder.envelope.EnvelopeBuilder;
@@ -35,7 +34,7 @@ public class AgentControllerExceptionHandler {
         Libralink.Envelope errorEnvelope = EnvelopeBuilder.newBuilder()
             .addId(UUID.randomUUID())
             .addContent(EnvelopeContentBuilder.newBuilder()
-                .addEntity(Any.pack(errorResponse)).build())
+                .addErrorResponse(errorResponse).build())
             .build();
 
 

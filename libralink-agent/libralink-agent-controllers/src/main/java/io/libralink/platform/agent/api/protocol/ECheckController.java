@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.Base64;
 import java.util.List;
@@ -40,10 +41,16 @@ public class ECheckController {
      *
      * @throws AgentProtocolException signifies bad request
      */
+    @ApiIgnore
     @PostMapping(value = "/protocol/echeck/pre-issue", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE })
     public Libralink.Envelope preIssue(@RequestBody String body) throws Exception {
 
-        Libralink.Envelope envelope = Libralink.Envelope.parseFrom(Base64.getDecoder().decode(body.getBytes()));
+        Libralink.Envelope envelope;
+        try {
+            envelope = Libralink.Envelope.parseFrom(Base64.getDecoder().decode(body.getBytes()));
+        } catch (Exception ex) {
+            throw new AgentProtocolException("Unable to parse request", 999);
+        }
 
         /* Find Payer Signature */
         Optional<Libralink.ECheck> eCheckOption = EnvelopeUtils.findEntityByType(envelope, Libralink.ECheck.class);
@@ -75,10 +82,17 @@ public class ECheckController {
      *
      * @throws AgentProtocolException signifies bad request
      */
+    @ApiIgnore
     @PostMapping(value = "/protocol/echeck/issue", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE })
     public Libralink.Envelope issue(@RequestBody String body) throws Exception {
 
-        Libralink.Envelope envelope = Libralink.Envelope.parseFrom(Base64.getDecoder().decode(body.getBytes()));
+        Libralink.Envelope envelope;
+        try {
+            envelope = Libralink.Envelope.parseFrom(Base64.getDecoder().decode(body.getBytes()));
+        } catch (Exception ex) {
+            throw new AgentProtocolException("Unable to parse request", 999);
+        }
+
         /* Get E-Check details */
         Optional<Libralink.ECheck> eCheckOption = EnvelopeUtils.findEntityByType(envelope, Libralink.ECheck.class);
         if (eCheckOption.isEmpty()) {
@@ -106,10 +120,17 @@ public class ECheckController {
         return eCheckIssueService.issue(envelope);
     }
 
+    @ApiIgnore
     @PostMapping(value = "/protocol/echeck/deposit", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE })
     public Libralink.Envelope deposit(@RequestBody String body) throws Exception {
 
-        Libralink.Envelope envelope = Libralink.Envelope.parseFrom(Base64.getDecoder().decode(body.getBytes()));
+        Libralink.Envelope envelope;
+        try {
+            envelope = Libralink.Envelope.parseFrom(Base64.getDecoder().decode(body.getBytes()));
+        } catch (Exception ex) {
+            throw new AgentProtocolException("Unable to parse request", 999);
+        }
+
         /* Get DepositRequest */
         Optional<Libralink.DepositRequest> depositRequestOption = EnvelopeUtils.findEntityByType(envelope, Libralink.DepositRequest.class);
         if (depositRequestOption.isEmpty()) {
