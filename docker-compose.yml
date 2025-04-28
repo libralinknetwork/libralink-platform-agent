@@ -16,6 +16,21 @@ services:
     networks:
       - libralink_network
 
+  libralink-agent:
+    image: libralink-agent
+    container_name: libralink-agent
+    ports:
+      - "8082:8082"
+    environment:
+      DATASOURCE_URL: 'jdbc:postgresql://postgres:5432/admin?currentSchema=public'
+      DATASOURCE_USERNAME: 'admin'
+      DATASOURCE_PASSWORD: 'admin'
+    build:
+      context: ./libralink-apps/suite
+      dockerfile: Dockerfile
+    networks:
+      - libralink_network
+
 networks:
   libralink_network:
     driver: bridge

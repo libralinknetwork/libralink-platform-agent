@@ -117,13 +117,6 @@ curl --header "Content-Type: text/plain" --header "Accept: text/plain" --request
 CiQ1ODNkYjQyMC02NDAwLTRjNWItOTI2Yy03NDU4ODU3YTE2NGMSNGIyCioweGYzOTkwMmIxMzNmYmRjZjkyNmMxZjQ4NjY1Yzk4ZDFiMDI4ZDkwNWESATAaATA=
 ```
 
-
-
-
-
-
-
-
 ### Deposit
 The request being sent is
 ```
@@ -285,4 +278,12 @@ curl --header "Content-Type: text/plain" --header "Accept: text/plain" --request
 
 # Response
 CiRiZDYzZGRjOC00MDA5LTRkNTEtYTYzNC1iYzMwOTRhMDQzMTYSHjIcCOcHEhdVbmFibGUgdG8gcGFyc2UgcmVxdWVzdA==
+```
+
+## Build Docker Image
+
+```
+docker-compose build libralink-agent
+docker image tag libralink-agent:latest drkhu/libralink-agent
+docker image push drkhu/libralink-agent
 ```
