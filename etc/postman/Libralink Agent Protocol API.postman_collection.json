@@ -1,0 +1,332 @@
+{
+	"info": {
+		"_postman_id": "842a1e65-e0a4-4df7-abee-7c218f18c666",
+		"name": "Libralink Agent Protocol API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register Agent",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/plain",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "CiRkNDk2YTMwYS02OTlmLTQxNTItODU0MS0xNmI1ZDE2MmU1ODYSswEKKjB4ZjM5OTAyYjEzM2ZiZGNmOTI2YzFmNDg2NjVjOThkMWIwMjhkOTA1YRoJU0VDUDI1NksxIAGKAXcKKjB4ZjM5OTAyYjEzM2ZiZGNmOTI2YzFmNDg2NjVjOThkMWIwMjhkOTA1YRoJc2VjcDI1NmsxIiQwNzVlNTg5Mi0wZTMyLTRhMGYtYWViMy1lMjUzOTRhNTFhN2MqGGRoRmhrRWpVVnE0akkwZDdCQmNEV0E9PRqEATB4MjkzMTIwNThmMzYxZWI0Mzg5ODcxYmIxM2M4NjBkYTcxODBjOWEyZDI3ZmQ1MThlMjFhNzJhNjc0MTRhYmNjNzRhNTZiOWQxOTUxODM3OTM5MmE1NDU1ODVmYjRmZGFlNDlmNTA4MDFkN2M4YTg5OWNjZDhmMjJmYWZiNmRlYTQxYw==",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/protocol/agent/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"protocol",
+						"agent",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Agent Balance",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "text/plain",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "CiQ4NzExYjBkNi0xMDE4LTQyM2ItOWM3Ni0zOTQ2ZDE3YTA5NjQSZwoqMHhmMzk5MDJiMTMzZmJkY2Y5MjZjMWY0ODY2NWM5OGQxYjAyOGQ5MDVhGglTRUNQMjU2SzEgAVosCioweGYzOTkwMmIxMzNmYmRjZjkyNmMxZjQ4NjY1Yzk4ZDFiMDI4ZDkwNWEahAEweDA3YTVlNThlNzgyMzZhMzI4ZDhlYjRhYjU2ZTc1MjU3NDJhOTk2OGFkOTY3NDg2MTJmZDllMjMxY2RhOTYwNjAxZTk1YjIzNjY0YjEwYWM0ODg2YjcxZWIwYWM0OGVhMzZkZDcwNGJmOTVhYWU0ZGFmN2M1ODQ2OGNjY2JmOWRlMWI=",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/protocol/agent/balance",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"protocol",
+						"agent",
+						"balance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Trusted Processors",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/plain",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "CiRjZTg5OTJiZi0zNTMwLTQyNjgtOWYwNy1jZTFlMWQ1M2Q1NWYSZwoqMHhmMzk5MDJiMTMzZmJkY2Y5MjZjMWY0ODY2NWM5OGQxYjAyOGQ5MDVhGglTRUNQMjU2SzEgAXosCioweGYzOTkwMmIxMzNmYmRjZjkyNmMxZjQ4NjY1Yzk4ZDFiMDI4ZDkwNWEahAEweGE0MTMwYzc5NzNmMWM1ODI3MWYzNzliM2RjNTEzZmMwODU3OGQ1MTY2OTRmZjA3N2RlMmE1YWRmZDk1NGUwYzg1MmQwMTYzNjE0ZDBhYjFiODg2OTliYWI5YjUxOTUwOTdkNjRjNTE5YmY4ZDI1NmFmMWU0MWQ5ZDMwZTAzMjA4MWM=",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/protocol/processor/trusted",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"protocol",
+						"processor",
+						"trusted"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pre-Issue E-Check",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/plain",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "CiRiYzEwZDc2NC04Mzk1LTQzODMtYTFlMC0xOTBhNGU4NGU5MjgSiAMKKjB4OGYzM2RjZWVlZGZjZjcxODVhYTQ4MGVlMTZkYjliOWJiNzQ1NzU2ZRoJU0VDUDI1NksxIAFSzAIKAzE1MBIEVVNEQxoqMHhmMzk5MDJiMTMzZmJkY2Y5MjZjMWY0ODY2NWM5OGQxYjAyOGQ5MDVhIioweDE4NWNkNDU5NzU3YTYzZWQ3M2YyMTAwZjcwZDMxMTk4M2IzN2JjYTYqKjB4OGYzM2RjZWVlZGZjZjcxODVhYTQ4MGVlMTZkYjliOWJiNzQ1NzU2ZTIqMHgxODVjZDQ1OTc1N2E2M2VkNzNmMjEwMGY3MGQzMTE5ODNiMzdiY2E2Ol0KAzE1MBIqMHg4ZjMzZGNlZWVkZmNmNzE4NWFhNDgwZWUxNmRiOWI5YmI3NDU3NTZlGioweDE4NWNkNDU5NzU3YTYzZWQ3M2YyMTAwZjcwZDMxMTk4M2IzN2JjYTZA2Zm6wAZI2eX01gdaJGZjMmQ4YWJmLWQ3NGEtNDQzMi1iZWM4LTllOTk1NjcwNjhlYRqEATB4NWRlMmI0NWEyNjdhYmQ3Y2U3Y2VmYzdkZmNjZjFkYzk0MGU0ZDM1ZTg2ZDE1MTQyMDBlZDQ5NjBmNWIxNjJkZTcxYjI2YWUxMDkxNGFlMjc1MGViM2FkMDFjYTcxMmQ4YTk5MjhjN2E4NGUzMjA2ZWQ5MDZjNDZhNjk3MDdlOTIxYg==",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/protocol/echeck/pre-issue",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"protocol",
+						"echeck",
+						"pre-issue"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Issue E-Check",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/plain",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "CiQ3YzAzMzkxZC00YTg5LTQzYjktOWUwOC0yZDI2OGI1MDVmZWYS7wYKKjB4ZjM5OTAyYjEzM2ZiZGNmOTI2YzFmNDg2NjVjOThkMWIwMjhkOTA1YRoJU0VDUDI1NksxIAMqswYKJDRmNGE5NTNiLTlkMDMtNDcwMi1hZTZjLTBkMzFhNjAzZGFlMBKDBQoqMHgxODVjZDQ1OTc1N2E2M2VkNzNmMjEwMGY3MGQzMTE5ODNiMzdiY2E2GglTRUNQMjU2SzEgAjrHBAoHcGVyY2VudBIBMSK4BAokYmMxMGQ3NjQtODM5NS00MzgzLWExZTAtMTkwYTRlODRlOTI4EogDCioweDhmMzNkY2VlZWRmY2Y3MTg1YWE0ODBlZTE2ZGI5YjliYjc0NTc1NmUaCVNFQ1AyNTZLMSABUswCCgMxNTASBFVTREMaKjB4ZjM5OTAyYjEzM2ZiZGNmOTI2YzFmNDg2NjVjOThkMWIwMjhkOTA1YSIqMHgxODVjZDQ1OTc1N2E2M2VkNzNmMjEwMGY3MGQzMTE5ODNiMzdiY2E2KioweDhmMzNkY2VlZWRmY2Y3MTg1YWE0ODBlZTE2ZGI5YjliYjc0NTc1NmUyKjB4MTg1Y2Q0NTk3NTdhNjNlZDczZjIxMDBmNzBkMzExOTgzYjM3YmNhNjpdCgMxNTASKjB4OGYzM2RjZWVlZGZjZjcxODVhYTQ4MGVlMTZkYjliOWJiNzQ1NzU2ZRoqMHgxODVjZDQ1OTc1N2E2M2VkNzNmMjEwMGY3MGQzMTE5ODNiMzdiY2E2QNmZusAGSNnl9NYHWiRmYzJkOGFiZi1kNzRhLTQ0MzItYmVjOC05ZTk5NTY3MDY4ZWEahAEweDVkZTJiNDVhMjY3YWJkN2NlN2NlZmM3ZGZjY2YxZGM5NDBlNGQzNWU4NmQxNTE0MjAwZWQ0OTYwZjViMTYyZGU3MWIyNmFlMTA5MTRhZTI3NTBlYjNhZDAxY2E3MTJkOGE5OTI4YzdhODRlMzIwNmVkOTA2YzQ2YTY5NzA3ZTkyMWIahAEweGZjMGU4ZmIwNjI3MTJjNTVhYmVmMDU0MzlmZTZhMTI5NGI3NzE0NzU2MmM5MTIwMGQzNmMyNGVkYzE4ZTY2MDYwZjU1NjEwNDNmZDY1ZmZjNjU1MWIwZjJkMmZjMzVjNzY5OGNiMWM3ODMzZjZkMmViOTM2YTM5OGQ4NWViNzdmMWMahAEweGVkZDY4OTE4MzY1NTQ5OGIwODFiMDEwZWI4MDExZGE3ZWQxNjM1OTUxNjJjMWYwNGZkYmRkZTUwZTY4OTFlNTcwOTA4MjE3YTg4NDU0MTFmNWM0NmQ5N2EyNTU0MzlhMDAxNzZmZTRiYWNlZWQ2OWQ5NDBhNTViMjExMDMwNzVhMWM=",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/protocol/echeck/issue",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"protocol",
+						"echeck",
+						"issue"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deposit",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/plain",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "CiQzYjgzZTdjYi1jZWIxLTQ4MWQtOWE5ZC1iNTJlNzg2MjZmMjcSwA8KKjB4OGYzM2RjZWVlZGZjZjcxODVhYTQ4MGVlMTZkYjliOWJiNzQ1NzU2ZRoJU0VDUDI1NksxIAFqhA8KiwoKJGM2NDYxZDRhLTBjMjctNGM3YS05ODc5LWM4NjFlNTNkNDM1NhLbCAoqMHgxODVjZDQ1OTc1N2E2M2VkNzNmMjEwMGY3MGQzMTE5ODNiMzdiY2E2GglTRUNQMjU2SzEgAyqfCAokMTZlOWU3OGMtNWUzZi00MTNkLWI1YmEtZDViMzVjNDBmZWFkEu8GCioweGYzOTkwMmIxMzNmYmRjZjkyNmMxZjQ4NjY1Yzk4ZDFiMDI4ZDkwNWEaCVNFQ1AyNTZLMSADKrMGCiRkN2RlOWMxYS00ZjU4LTQ4YjgtYmJjYi1lYTFlZWIxY2JmMTkSgwUKKjB4MTg1Y2Q0NTk3NTdhNjNlZDczZjIxMDBmNzBkMzExOTgzYjM3YmNhNhoJU0VDUDI1NksxIAI6xwQKB3BlcmNlbnQSATEiuAQKJDgwZGM4ZGUyLWZkZmMtNGI0Zi05YWRkLWI1YjJkMTRjOTNlYxKIAwoqMHhmMzk5MDJiMTMzZmJkY2Y5MjZjMWY0ODY2NWM5OGQxYjAyOGQ5MDVhGglTRUNQMjU2SzEgAVLMAgoDMTUwEgRVU0RDGioweGYzOTkwMmIxMzNmYmRjZjkyNmMxZjQ4NjY1Yzk4ZDFiMDI4ZDkwNWEiKjB4MTg1Y2Q0NTk3NTdhNjNlZDczZjIxMDBmNzBkMzExOTgzYjM3YmNhNioqMHg4ZjMzZGNlZWVkZmNmNzE4NWFhNDgwZWUxNmRiOWI5YmI3NDU3NTZlMioweDE4NWNkNDU5NzU3YTYzZWQ3M2YyMTAwZjcwZDMxMTk4M2IzN2JjYTY6XQoDMTUwEioweDhmMzNkY2VlZWRmY2Y3MTg1YWE0ODBlZTE2ZGI5YjliYjc0NTc1NmUaKjB4MTg1Y2Q0NTk3NTdhNjNlZDczZjIxMDBmNzBkMzExOTgzYjM3YmNhNkDBmrrABkjBg8rABlokNTIzZWY4MGQtOWRmNi00YjE2LThkMDEtMzQ4ZWNmN2I2YTQ5GoQBMHg4NDc5MTMzODI0NmRlN2MyN2QyMzdjN2QxMTUzMmJiZGZkMzFlMmM1MjkyZGNkNTE3YjZkMjVhYjZiY2RhOTBkMmIyMWU1OTRlYmRjZDQ4Y2E3NDA4ZjBiM2JhMDYzMGI1YzA4ZTk4MzM3NzM3NzlmODFkNTc2MzY1MTFhOTEwNzFiGoQBMHg4NGViNTNjODk0NWQ1OWU4NjZkYWI1NWQyOGE0YWYxYWI0MTZjMWJkMWE4ZmUwNmE0MzcwNGNjYjU0MGIxYmUxMThiODNiYmMxOTZjN2Q3MjY1MDYyYTZiMjA5ZDEyNTc3ZDUwM2FkNGM2YzRiZmRkOTk4NjY0MDVkY2IwZjJmZjFiGoQBMHhmNjJmMmM4MTcxYmFiYWE4ZDQ4M2Y1NDIyMDM5NTVlZWI1ZmVkYjE3ZDVlMjQ2NDE2NTRmZDJjOGNmY2I2OGJjNjc0ZmU2ZmJmYjM3ZWJlZjdhZTAwNDU2NWFlYWU1ODMwYWIwOTY4MjJmNTA3OGRkZDdjNGU0MTVlOTc4MTUwMzFjGoQBMHgyMjM2NTM1YmM3NThhNzEwZWYyMDQxOTNhNWRmODhhNjc2YzQzZTc2YzZmZTEwZGFkMDkxM2ZhZjE2MDU4N2UzN2E2MTVlNDcyYzU1ZGY5NDBhY2U5N2RhMjRmZGFiMzM4NjRhYmMxOTU2NDI5ZGMwYmViNjczOTY4NDVhMWM0MjFiEvMECiQ3MGU5YmY0NC1lY2Y4LTRjZDUtYTQwMi01YWVjN2I5MWU1MDcSwwMKKjB4ZjM5OTAyYjEzM2ZiZGNmOTI2YzFmNDg2NjVjOThkMWIwMjhkOTA1YRoJU0VDUDI1NksxIAMqhwMKJDhkNDM0ODVlLTIyOTgtNDVjMS1iZmE2LTY5YWNhNDE5OTFkZBLXAQoqMHg4ZjMzZGNlZWVkZmNmNzE4NWFhNDgwZWUxNmRiOWI5YmI3NDU3NTZlGglTRUNQMjU2SzEgA0qbAQoDMTAwEioweGYzOTkwMmIxMzNmYmRjZjkyNmMxZjQ4NjY1Yzk4ZDFiMDI4ZDkwNWEaBGZha2UiKjB4OGYzM2RjZWVlZGZjZjcxODVhYTQ4MGVlMTZkYjliOWJiNzQ1NzU2ZSoEZmFrZTIEVVNEQzjBmrrABkokNTIzZWY4MGQtOWRmNi00YjE2LThkMDEtMzQ4ZWNmN2I2YTQ5GoQBMHgyMGNlYTA4NWQ2NjMwMjQ1NzRiN2I1OTdlMWM5MDA3YjE4YjRlOTZkZDNlYTQ1ODJmMTY5MTk0M2NlOTEyMzQyMjE1MDU0NTAwMzVjOGEyMDI5YmYwNGE4ZGM5YjRhZTY2ZWVhYzMyNzZhMDJhMDQ5N2YxNjdhNTNmZjNlYjZlZTFiGoQBMHhjMTgyMzg5N2M3Y2U5NDM1ZmE0Y2MzNmVjYzdhNzk5MDBhZTdiNTE4N2U4MzQwM2NkMDAxMWUwMTZkY2VjMTk0MDQ0YjQ5ZDVhNDkzOGMyYWFjNGJiMmM5MWI1YmZjYWI3YjYwMDZkN2Q4N2U2ZjA1ZDdhYjIxNzc3ZjU5ZjIwOTFjGoQBMHg3OGFhNmJmYTUxMjhjYzg3OTJkYTE0ZjBkZjUwN2JhMzUxOWRmNmY4NGQ4MTk1ODU3ZGRlZmIxZGUxYTFiMWZlMzk1NjgyYzcyMDM3N2Q2ZjY0MWZmNmM1YjIzMTJhMmQwOTU0ZTcwNDMxZTFiMDc1MzNmY2ZlY2VmNzU2MTk4ODFj",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/protocol/echeck/deposit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"protocol",
+						"echeck",
+						"deposit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Wallet Accounts",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Token {{token}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/wallet/accounts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"wallet",
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Accounts Transactions",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "Token {{token}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "Authorization",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/wallet/accounts/f5ac7d82-5a2e-4f9a-84af-869842fc9f40/transactions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"wallet",
+						"accounts",
+						"f5ac7d82-5a2e-4f9a-84af-869842fc9f40",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
